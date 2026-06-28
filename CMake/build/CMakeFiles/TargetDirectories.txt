@@ -1,0 +1,3 @@
+C:/School/lhammel/Fork/BitForge/CMake/build/CMakeFiles/bf.Window.dir
+C:/School/lhammel/Fork/BitForge/CMake/build/CMakeFiles/ALL_BUILD.dir
+C:/School/lhammel/Fork/BitForge/CMake/build/CMakeFiles/ZERO_CHECK.dir

@@ -1,0 +1,348 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="InProd|Win32">
+      <Configuration>InProd</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="InProd|x64">
+      <Configuration>InProd</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>18.0</VCProjectVersion>
+    <Keyword>Win32Proj</Keyword>
+    <ProjectGuid>{cd100453-df28-4154-ac5a-0a1c3c88eed1}</ProjectGuid>
+    <RootNamespace>BitForge</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0.26100.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v145</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='InProd|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v145</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v145</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v145</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='InProd|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v145</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+    <VCToolsVersion>14.50.35717</VCToolsVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v145</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+    <Import Project="$(VCTargetsPath)\BuildCustomizations\masm.props" />
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='InProd|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='InProd|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp20</LanguageStandard>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='InProd|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp20</LanguageStandard>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp20</LanguageStandard>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
+      <!-- AVX2 codegen so DirectXMath emits 256-bit / FMA SIMD intrinsics (Part J). -->
+      <EnableEnhancedInstructionSet>AdvancedVectorExtensions2</EnableEnhancedInstructionSet>
+      <FloatingPointModel>Fast</FloatingPointModel>
+      <AdditionalIncludeDirectories>$(ProjectDir);$(ProjectDir)Renderer;$(ProjectDir)Core;$(ProjectDir)Assets\Loaders;$(SolutionDir)lib;$(SolutionName)\$(ShortProjectName);$(ProjectDir)thirdparty\imgui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalModuleDependencies>$(SolutionDir)lib\Window.ixx.ifc;%(AdditionalModuleDependencies)</AdditionalModuleDependencies>
+      <ScanSourceForModuleDependencies>false</ScanSourceForModuleDependencies>
+      <AdditionalOptions>/std:c++20 /experimental:module %(AdditionalOptions)</AdditionalOptions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>bf-Window.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)lib\Window.ixx.ifc;$(SolutionDir)lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='InProd|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp23</LanguageStandard>
+      <AdditionalIncludeDirectories>$(ProjectDir);$(ProjectDir)Renderer;$(ProjectDir)Core;$(ProjectDir)Assets\Loaders;$(VCToolsInstallDir)\modules;$(SolutionName)\$(ShortProjectName);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalModuleDependencies>$(SolutionDir)STLModules\std.ifc;%(AdditionalModuleDependencies)</AdditionalModuleDependencies>
+      <ScanSourceForModuleDependencies>false</ScanSourceForModuleDependencies>
+      <LanguageStandard_C>stdc17</LanguageStandard_C>
+      <AdditionalOptions>/std:c++23 /experimental:module
+ %(AdditionalOptions)</AdditionalOptions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
+      <!-- AVX2 codegen so DirectXMath emits 256-bit / FMA SIMD intrinsics (matches Debug|x64). -->
+      <EnableEnhancedInstructionSet>AdvancedVectorExtensions2</EnableEnhancedInstructionSet>
+      <FloatingPointModel>Fast</FloatingPointModel>
+      <AdditionalIncludeDirectories>$(ProjectDir);$(ProjectDir)Renderer;$(ProjectDir)Core;$(ProjectDir)Assets\Loaders;$(SolutionDir)lib;$(SolutionName)\$(ShortProjectName);$(ProjectDir)thirdparty\imgui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalModuleDependencies>$(SolutionDir)lib\Window.ixx.ifc;%(AdditionalModuleDependencies)</AdditionalModuleDependencies>
+      <ScanSourceForModuleDependencies>false</ScanSourceForModuleDependencies>
+      <AdditionalOptions>/std:c++20 /experimental:module %(AdditionalOptions)</AdditionalOptions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <!-- The app defines int main(), not WinMain. Under the Windows subsystem
+           force the CRT entry to mainCRTStartup so it calls main() (no console
+           window, no unresolved WinMain). -->
+      <EntryPointSymbol>mainCRTStartup</EntryPointSymbol>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>bf-Window.lib;dxgi.lib;d3d12.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)lib\Window.ixx.ifc;$(WindowsSdkDir)Lib\$(WindowsTargetPlatformVersion)\um\x64;$(SolutionDir)lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\lib\Window\CPP\Color.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='InProd|x64'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\lib\Window\CPP\Window.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='InProd|x64'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\lib\Window\IXX\Color.ixx">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='InProd|x64'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\lib\Window\IXX\Window.ixx">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='InProd|x64'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="Config\Presets\PresetTypes.ixx" />
+    <ClCompile Include="Config\Presets\PresetSerializer.ixx" />
+    <ClCompile Include="Config\Presets\PresetSerializer.cpp" />
+    <ClCompile Include="Config\Presets\PresetManager.ixx" />
+    <ClCompile Include="Config\Presets\PresetManager.cpp" />
+    <ClCompile Include="Config\Presets\PresetBinding.ixx" />
+    <ClCompile Include="Config\Presets\PresetBinding.cpp" />
+    <ClCompile Include="Config\Presets\PresetSession.ixx" />
+    <ClCompile Include="Config\Presets\PresetSession.cpp" />
+    <ClCompile Include="Renderer\Dx12Renderer.cpp" />
+    <ClCompile Include="Renderer\Dx12RendererInit.cpp" />
+    <ClCompile Include="Renderer\Dx12RendererPipeline.cpp" />
+    <ClCompile Include="Renderer\Dx12RendererResources.cpp" />
+    <ClCompile Include="Rendering\Graph\RenderGraphBuilder.cpp" />
+    <ClCompile Include="Rendering\Graph\RenderGraphExecutor.cpp" />
+    <ClCompile Include="Renderer\Dx12RendererDeferred.cpp" />
+    <ClCompile Include="Rendering\Deferred\GBufferCreate.cpp" />
+    <ClCompile Include="Rendering\Deferred\GBufferTransitions.cpp" />
+    <ClCompile Include="Rendering\Shadows\ShadowMap.cpp" />
+    <ClCompile Include="Rendering\Shadows\ShadowUtils.cpp" />
+    <ClCompile Include="Rendering\Lighting\LightManager.cpp" />
+    <ClCompile Include="Rendering\Lighting\LightGpuUpload.cpp" />
+    <ClCompile Include="Scene\SceneLightingSetup.cpp" />
+    <ClCompile Include="Scene\TimeOfDay.cpp" />
+    <ClCompile Include="Rendering\GpuDriven\GpuDriven.cpp" />
+    <ClCompile Include="Rendering\Materials\MaterialManager.cpp" />
+    <ClCompile Include="Rendering\PostProcess\HdrTarget.cpp" />
+    <ClCompile Include="Rendering\PostProcess\DepthOfField.cpp" />
+    <ClCompile Include="Rendering\SSAO\Ssao.cpp" />
+    <ClCompile Include="Rendering\SSAO\SsaoPass.cpp" />
+    <ClCompile Include="Rendering\SSAO\SsaoBlur.cpp" />
+    <ClCompile Include="Rendering\VolumetricFog\VolumetricFog.cpp" />
+    <ClCompile Include="Rendering\VolumetricFog\FogPass.cpp" />
+    <ClCompile Include="Rendering\TAA\Taa.cpp" />
+    <ClCompile Include="Rendering\TAA\TaaPass.cpp" />
+    <ClCompile Include="Assets\Core\AssetManager.cpp" />
+    <ClCompile Include="Assets\Loaders\TextureLoader.cpp" />
+    <ClCompile Include="Assets\Loaders\GltfModelLoader.cpp" />
+    <ClCompile Include="Assets\Streaming\AssetStreamer.cpp" />
+    <ClCompile Include="Rendering\Debug\Picking.cpp" />
+    <ClCompile Include="Camera\CameraMath.cpp" />
+    <ClCompile Include="Camera\CameraExposure.cpp" />
+    <ClCompile Include="Camera\CameraController.cpp" />
+    <ClCompile Include="Camera\CameraEffects.cpp" />
+    <ClCompile Include="Assets\Loaders\ModelLoader.cpp" />
+    <ClCompile Include="Assets\Loaders\GLTFLoader.cpp" />
+    <ClCompile Include="Core\Timer.cpp" />
+    <ClCompile Include="Input\Input.cpp" />
+    <ClCompile Include="UI\ImGuiLayer.cpp" />
+    <ClCompile Include="thirdparty\imgui\imgui.cpp" />
+    <ClCompile Include="thirdparty\imgui\imgui_draw.cpp" />
+    <ClCompile Include="thirdparty\imgui\imgui_tables.cpp" />
+    <ClCompile Include="thirdparty\imgui\imgui_widgets.cpp" />
+    <ClCompile Include="thirdparty\imgui\backends\imgui_impl_win32.cpp" />
+    <ClCompile Include="thirdparty\imgui\backends\imgui_impl_dx12.cpp" />
+    <ClCompile Include="Main.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <MASM Include="..\WorkDirectory\RenderWindow.asm" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\WorkDirectory\windows.inc" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Renderer\Dx12Renderer.h" />
+    <ClInclude Include="Renderer\Dx12RendererInternal.h" />
+    <ClInclude Include="Rendering\Graph\RenderGraph.h" />
+    <ClInclude Include="Rendering\Graph\RenderPass.h" />
+    <ClInclude Include="Rendering\Deferred\GBuffer.h" />
+    <ClInclude Include="Rendering\Shadows\ShadowMap.h" />
+    <ClInclude Include="Rendering\Shadows\ShadowUtils.h" />
+    <ClInclude Include="Rendering\Lighting\LightingTypes.h" />
+    <ClInclude Include="Rendering\Lighting\Light.h" />
+    <ClInclude Include="Rendering\Lighting\LightManager.h" />
+    <ClInclude Include="Rendering\Materials\TextureSet.h" />
+    <ClInclude Include="Rendering\Materials\Material.h" />
+    <ClInclude Include="Rendering\Materials\MaterialManager.h" />
+    <ClInclude Include="Rendering\PostProcess\HdrTarget.h" />
+    <ClInclude Include="Rendering\SSAO\Ssao.h" />
+    <ClInclude Include="Rendering\VolumetricFog\VolumetricFog.h" />
+    <ClInclude Include="Rendering\TAA\Taa.h" />
+    <ClInclude Include="Assets\Core\AssetManager.h" />
+    <ClInclude Include="Assets\Core\AssetHandle.h" />
+    <ClInclude Include="Assets\Core\AssetTypes.h" />
+    <ClInclude Include="Assets\Loaders\TextureLoader.h" />
+    <ClInclude Include="Assets\Loaders\GltfModelLoader.h" />
+    <ClInclude Include="Assets\Streaming\AssetStreamer.h" />
+    <ClInclude Include="Assets\Cache\AssetCache.h" />
+    <ClInclude Include="Rendering\Debug\Picking.h" />
+    <ClInclude Include="Rendering\RayTracing\RayCommon.h" />
+    <ClInclude Include="Assets\Loaders\ModelLoader.h" />
+    <ClInclude Include="Assets\Loaders\GLTFLoader.h" />
+    <ClInclude Include="Core\Vertex.h" />
+    <ClInclude Include="Core\Timer.h" />
+    <ClInclude Include="Core\MathSimd.h" />
+    <ClInclude Include="Input\Input.h" />
+    <ClInclude Include="Camera\CinematicCamera.h" />
+    <ClInclude Include="Scene\TimeOfDay.h" />
+    <ClInclude Include="Rendering\GpuDriven\InstanceData.h" />
+    <ClInclude Include="UI\ImGuiLayer.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+    <Import Project="$(VCTargetsPath)\BuildCustomizations\masm.targets" />
+  </ImportGroup>
+  <Target Name="CopyAssets" AfterTargets="Build">
+    <ItemGroup>
+      <AssetFiles Include="$(SolutionDir)WorkDirectory\Assets\**\*" />
+    </ItemGroup>
+    <Copy SourceFiles="@(AssetFiles)"
+          DestinationFiles="@(AssetFiles->'$(OutDir)Assets\%(RecursiveDir)%(Filename)%(Extension)')"
+          SkipUnchangedFiles="true" />
+    <Message Importance="high" Text="[BitForge] Copied WorkDirectory\Assets -&gt; $(OutDir)Assets" />
+  </Target>
+</Project>

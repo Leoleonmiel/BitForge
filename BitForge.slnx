@@ -1,0 +1,10 @@
+<Solution>
+  <Configurations>
+    <BuildType Name="Debug" />
+    <BuildType Name="InProd" />
+    <BuildType Name="Release" />
+    <Platform Name="x64" />
+    <Platform Name="x86" />
+  </Configurations>
+  <Project Path="BitForge/BitForge.vcxproj" Id="cd100453-df28-4154-ac5a-0a1c3c88eed1" />
+</Solution>

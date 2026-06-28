@@ -1,0 +1,441 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Camera">
+      <UniqueIdentifier>{a1000001-0000-4000-8000-000000000001}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core">
+      <UniqueIdentifier>{a1000002-0000-4000-8000-000000000002}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Renderer">
+      <UniqueIdentifier>{a1b2c3d4-0001-4001-8001-000000000001}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Input">
+      <UniqueIdentifier>{a1000003-0000-4000-8000-000000000003}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene">
+      <UniqueIdentifier>{a1000004-0000-4000-8000-000000000004}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UI">
+      <UniqueIdentifier>{a1000005-0000-4000-8000-000000000005}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Rendering">
+      <UniqueIdentifier>{a1000006-0000-4000-8000-000000000006}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Rendering\Graph">
+      <UniqueIdentifier>{a1000007-0000-4000-8000-000000000007}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Rendering\Deferred">
+      <UniqueIdentifier>{a1000008-0000-4000-8000-000000000008}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Rendering\Shadows">
+      <UniqueIdentifier>{a1000009-0000-4000-8000-000000000009}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Rendering\Lighting">
+      <UniqueIdentifier>{a100000a-0000-4000-8000-00000000000a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Rendering\GpuDriven">
+      <UniqueIdentifier>{a100000b-0000-4000-8000-00000000000b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Rendering\Materials">
+      <UniqueIdentifier>{a100000c-0000-4000-8000-00000000000c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Rendering\PostProcess">
+      <UniqueIdentifier>{a100000d-0000-4000-8000-00000000000d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Rendering\SSAO">
+      <UniqueIdentifier>{a100000e-0000-4000-8000-00000000000e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Rendering\Debug">
+      <UniqueIdentifier>{a100000f-0000-4000-8000-00000000000f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Rendering\VolumetricFog">
+      <UniqueIdentifier>{a1000018-0000-4000-8000-000000000018}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Rendering\TAA">
+      <UniqueIdentifier>{a1000019-0000-4000-8000-000000000019}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Assets">
+      <UniqueIdentifier>{a100001a-0000-4000-8000-00000000001a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Assets\Core">
+      <UniqueIdentifier>{a100001b-0000-4000-8000-00000000001b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Assets\Loaders">
+      <UniqueIdentifier>{a100001c-0000-4000-8000-00000000001c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Assets\Streaming">
+      <UniqueIdentifier>{a100001d-0000-4000-8000-00000000001d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Assets\Cache">
+      <UniqueIdentifier>{a100001e-0000-4000-8000-00000000001e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Rendering\RayTracing">
+      <UniqueIdentifier>{a1000010-0000-4000-8000-000000000010}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="thirdparty">
+      <UniqueIdentifier>{a1000011-0000-4000-8000-000000000011}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="thirdparty\imgui">
+      <UniqueIdentifier>{a1000012-0000-4000-8000-000000000012}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="thirdparty\imgui\backends">
+      <UniqueIdentifier>{a1000013-0000-4000-8000-000000000013}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Window">
+      <UniqueIdentifier>{a1000014-0000-4000-8000-000000000014}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Window\CPP">
+      <UniqueIdentifier>{a1000015-0000-4000-8000-000000000015}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Window\IXX">
+      <UniqueIdentifier>{a1000016-0000-4000-8000-000000000016}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Window\ASM">
+      <UniqueIdentifier>{a1000017-0000-4000-8000-000000000017}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Config">
+      <UniqueIdentifier>{a1b2c3d4-0002-4002-8002-000000000002}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Config\Presets">
+      <UniqueIdentifier>{a1b2c3d4-0003-4003-8003-000000000003}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <!-- Project-root translation units -->
+    <ClCompile Include="Main.cpp" />
+        <ClCompile Include="Renderer\Dx12Renderer.cpp">
+      <Filter>Renderer</Filter>
+    </ClCompile>
+        <ClCompile Include="Renderer\Dx12RendererInit.cpp">
+      <Filter>Renderer</Filter>
+    </ClCompile>
+        <ClCompile Include="Renderer\Dx12RendererPipeline.cpp">
+      <Filter>Renderer</Filter>
+    </ClCompile>
+        <ClCompile Include="Renderer\Dx12RendererResources.cpp">
+      <Filter>Renderer</Filter>
+    </ClCompile>
+        <ClCompile Include="Renderer\Dx12RendererDeferred.cpp">
+      <Filter>Renderer</Filter>
+    </ClCompile>
+        <ClCompile Include="Rendering\Lighting\LightGpuUpload.cpp">
+      <Filter>Rendering\Lighting</Filter>
+    </ClCompile>
+        <ClCompile Include="Scene\SceneLightingSetup.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+        <ClCompile Include="Scene\TimeOfDay.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+        <ClCompile Include="Assets\Loaders\ModelLoader.cpp">
+      <Filter>Assets\Loaders</Filter>
+    </ClCompile>
+        <ClCompile Include="Assets\Loaders\GLTFLoader.cpp">
+      <Filter>Assets\Loaders</Filter>
+    </ClCompile>
+    <!-- Camera -->
+    <ClCompile Include="Camera\CameraMath.cpp">
+      <Filter>Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="Camera\CameraExposure.cpp">
+      <Filter>Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="Camera\CameraController.cpp">
+      <Filter>Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="Camera\CameraEffects.cpp">
+      <Filter>Camera</Filter>
+    </ClCompile>
+    <!-- Core / Input / UI -->
+    <ClCompile Include="Core\Timer.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Input\Input.cpp">
+      <Filter>Input</Filter>
+    </ClCompile>
+    <ClCompile Include="UI\ImGuiLayer.cpp">
+      <Filter>UI</Filter>
+    </ClCompile>
+    <!-- Rendering\Graph -->
+    <ClCompile Include="Rendering\Graph\RenderGraphBuilder.cpp">
+      <Filter>Rendering\Graph</Filter>
+    </ClCompile>
+    <ClCompile Include="Rendering\Graph\RenderGraphExecutor.cpp">
+      <Filter>Rendering\Graph</Filter>
+    </ClCompile>
+    <!-- Rendering\Deferred -->
+    <ClCompile Include="Rendering\Deferred\GBufferCreate.cpp">
+      <Filter>Rendering\Deferred</Filter>
+    </ClCompile>
+    <ClCompile Include="Rendering\Deferred\GBufferTransitions.cpp">
+      <Filter>Rendering\Deferred</Filter>
+    </ClCompile>
+    <!-- Rendering\Shadows -->
+    <ClCompile Include="Rendering\Shadows\ShadowMap.cpp">
+      <Filter>Rendering\Shadows</Filter>
+    </ClCompile>
+    <ClCompile Include="Rendering\Shadows\ShadowUtils.cpp">
+      <Filter>Rendering\Shadows</Filter>
+    </ClCompile>
+    <!-- Rendering\Lighting -->
+    <ClCompile Include="Rendering\Lighting\LightManager.cpp">
+      <Filter>Rendering\Lighting</Filter>
+    </ClCompile>
+    <!-- Rendering\GpuDriven -->
+    <ClCompile Include="Rendering\GpuDriven\GpuDriven.cpp">
+      <Filter>Rendering\GpuDriven</Filter>
+    </ClCompile>
+    <!-- Rendering\Materials -->
+    <ClCompile Include="Rendering\Materials\MaterialManager.cpp">
+      <Filter>Rendering\Materials</Filter>
+    </ClCompile>
+    <!-- Rendering\PostProcess -->
+    <ClCompile Include="Rendering\PostProcess\HdrTarget.cpp">
+      <Filter>Rendering\PostProcess</Filter>
+    </ClCompile>
+    <ClCompile Include="Rendering\PostProcess\DepthOfField.cpp">
+      <Filter>Rendering\PostProcess</Filter>
+    </ClCompile>
+    <!-- Rendering\SSAO -->
+    <ClCompile Include="Rendering\SSAO\Ssao.cpp">
+      <Filter>Rendering\SSAO</Filter>
+    </ClCompile>
+    <ClCompile Include="Rendering\SSAO\SsaoPass.cpp">
+      <Filter>Rendering\SSAO</Filter>
+    </ClCompile>
+    <ClCompile Include="Rendering\SSAO\SsaoBlur.cpp">
+      <Filter>Rendering\SSAO</Filter>
+    </ClCompile>
+    <!-- Rendering\Debug -->
+    <ClCompile Include="Rendering\Debug\Picking.cpp">
+      <Filter>Rendering\Debug</Filter>
+    </ClCompile>
+    <!-- Rendering\VolumetricFog -->
+    <ClCompile Include="Rendering\VolumetricFog\VolumetricFog.cpp">
+      <Filter>Rendering\VolumetricFog</Filter>
+    </ClCompile>
+    <ClCompile Include="Rendering\VolumetricFog\FogPass.cpp">
+      <Filter>Rendering\VolumetricFog</Filter>
+    </ClCompile>
+    <!-- Rendering\TAA -->
+    <ClCompile Include="Rendering\TAA\Taa.cpp">
+      <Filter>Rendering\TAA</Filter>
+    </ClCompile>
+    <ClCompile Include="Rendering\TAA\TaaPass.cpp">
+      <Filter>Rendering\TAA</Filter>
+    </ClCompile>
+    <!-- Assets -->
+    <ClCompile Include="Assets\Core\AssetManager.cpp">
+      <Filter>Assets\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Assets\Loaders\TextureLoader.cpp">
+      <Filter>Assets\Loaders</Filter>
+    </ClCompile>
+    <ClCompile Include="Assets\Loaders\GltfModelLoader.cpp">
+      <Filter>Assets\Loaders</Filter>
+    </ClCompile>
+    <ClCompile Include="Assets\Streaming\AssetStreamer.cpp">
+      <Filter>Assets\Streaming</Filter>
+    </ClCompile>
+    <!-- thirdparty\imgui -->
+    <ClCompile Include="thirdparty\imgui\imgui.cpp">
+      <Filter>thirdparty\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="thirdparty\imgui\imgui_draw.cpp">
+      <Filter>thirdparty\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="thirdparty\imgui\imgui_tables.cpp">
+      <Filter>thirdparty\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="thirdparty\imgui\imgui_widgets.cpp">
+      <Filter>thirdparty\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="thirdparty\imgui\backends\imgui_impl_win32.cpp">
+      <Filter>thirdparty\imgui\backends</Filter>
+    </ClCompile>
+    <ClCompile Include="thirdparty\imgui\backends\imgui_impl_dx12.cpp">
+      <Filter>thirdparty\imgui\backends</Filter>
+    </ClCompile>
+    <!-- External Window library -->
+    <ClCompile Include="..\lib\Window\CPP\Color.cpp">
+      <Filter>Window\CPP</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lib\Window\CPP\Window.cpp">
+      <Filter>Window\CPP</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lib\Window\IXX\Color.ixx">
+      <Filter>Window\IXX</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lib\Window\IXX\Window.ixx">
+      <Filter>Window\IXX</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <!-- Project-root headers -->
+        <ClInclude Include="Renderer\Dx12Renderer.h">
+      <Filter>Renderer</Filter>
+    </ClInclude>
+        <ClInclude Include="Renderer\Dx12RendererInternal.h">
+      <Filter>Renderer</Filter>
+    </ClInclude>
+        <ClInclude Include="Core\Vertex.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+        <ClInclude Include="Assets\Loaders\ModelLoader.h">
+      <Filter>Assets\Loaders</Filter>
+    </ClInclude>
+        <ClInclude Include="Assets\Loaders\GLTFLoader.h">
+      <Filter>Assets\Loaders</Filter>
+    </ClInclude>
+    <!-- Camera -->
+    <ClInclude Include="Camera\CinematicCamera.h">
+      <Filter>Camera</Filter>
+    </ClInclude>
+    <!-- Core -->
+    <ClInclude Include="Core\Timer.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\MathSimd.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <!-- Input -->
+    <ClInclude Include="Input\Input.h">
+      <Filter>Input</Filter>
+    </ClInclude>
+    <!-- Scene -->
+    <ClInclude Include="Scene\TimeOfDay.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <!-- UI -->
+    <ClInclude Include="UI\ImGuiLayer.h">
+      <Filter>UI</Filter>
+    </ClInclude>
+    <!-- Rendering\Graph -->
+    <ClInclude Include="Rendering\Graph\RenderGraph.h">
+      <Filter>Rendering\Graph</Filter>
+    </ClInclude>
+    <ClInclude Include="Rendering\Graph\RenderPass.h">
+      <Filter>Rendering\Graph</Filter>
+    </ClInclude>
+    <!-- Rendering\Deferred -->
+    <ClInclude Include="Rendering\Deferred\GBuffer.h">
+      <Filter>Rendering\Deferred</Filter>
+    </ClInclude>
+    <!-- Rendering\Shadows -->
+    <ClInclude Include="Rendering\Shadows\ShadowMap.h">
+      <Filter>Rendering\Shadows</Filter>
+    </ClInclude>
+    <ClInclude Include="Rendering\Shadows\ShadowUtils.h">
+      <Filter>Rendering\Shadows</Filter>
+    </ClInclude>
+    <!-- Rendering\Lighting -->
+    <ClInclude Include="Rendering\Lighting\LightingTypes.h">
+      <Filter>Rendering\Lighting</Filter>
+    </ClInclude>
+    <ClInclude Include="Rendering\Lighting\Light.h">
+      <Filter>Rendering\Lighting</Filter>
+    </ClInclude>
+    <ClInclude Include="Rendering\Lighting\LightManager.h">
+      <Filter>Rendering\Lighting</Filter>
+    </ClInclude>
+    <!-- Rendering\GpuDriven -->
+    <ClInclude Include="Rendering\GpuDriven\InstanceData.h">
+      <Filter>Rendering\GpuDriven</Filter>
+    </ClInclude>
+    <!-- Rendering\Materials -->
+    <ClInclude Include="Rendering\Materials\TextureSet.h">
+      <Filter>Rendering\Materials</Filter>
+    </ClInclude>
+    <ClInclude Include="Rendering\Materials\Material.h">
+      <Filter>Rendering\Materials</Filter>
+    </ClInclude>
+    <ClInclude Include="Rendering\Materials\MaterialManager.h">
+      <Filter>Rendering\Materials</Filter>
+    </ClInclude>
+    <!-- Rendering\PostProcess -->
+    <ClInclude Include="Rendering\PostProcess\HdrTarget.h">
+      <Filter>Rendering\PostProcess</Filter>
+    </ClInclude>
+    <!-- Rendering\SSAO -->
+    <ClInclude Include="Rendering\SSAO\Ssao.h">
+      <Filter>Rendering\SSAO</Filter>
+    </ClInclude>
+    <!-- Rendering\Debug -->
+    <ClInclude Include="Rendering\Debug\Picking.h">
+      <Filter>Rendering\Debug</Filter>
+    </ClInclude>
+    <!-- Rendering\RayTracing -->
+    <ClInclude Include="Rendering\RayTracing\RayCommon.h">
+      <Filter>Rendering\RayTracing</Filter>
+    </ClInclude>
+    <!-- Rendering\VolumetricFog -->
+    <ClInclude Include="Rendering\VolumetricFog\VolumetricFog.h">
+      <Filter>Rendering\VolumetricFog</Filter>
+    </ClInclude>
+    <ClInclude Include="Rendering\TAA\Taa.h">
+      <Filter>Rendering\TAA</Filter>
+    </ClInclude>
+    <!-- Assets -->
+    <ClInclude Include="Assets\Core\AssetManager.h">
+      <Filter>Assets\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Assets\Core\AssetHandle.h">
+      <Filter>Assets\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Assets\Core\AssetTypes.h">
+      <Filter>Assets\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Assets\Loaders\TextureLoader.h">
+      <Filter>Assets\Loaders</Filter>
+    </ClInclude>
+    <ClInclude Include="Assets\Loaders\GltfModelLoader.h">
+      <Filter>Assets\Loaders</Filter>
+    </ClInclude>
+    <ClInclude Include="Assets\Streaming\AssetStreamer.h">
+      <Filter>Assets\Streaming</Filter>
+    </ClInclude>
+    <ClInclude Include="Assets\Cache\AssetCache.h">
+      <Filter>Assets\Cache</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <MASM Include="..\WorkDirectory\RenderWindow.asm">
+      <Filter>Window\ASM</Filter>
+    </MASM>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\WorkDirectory\windows.inc">
+      <Filter>Window\ASM</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Config\Presets\PresetTypes.ixx">
+      <Filter>Config\Presets</Filter>
+    </ClCompile>
+    <ClCompile Include="Config\Presets\PresetSerializer.ixx">
+      <Filter>Config\Presets</Filter>
+    </ClCompile>
+    <ClCompile Include="Config\Presets\PresetSerializer.cpp">
+      <Filter>Config\Presets</Filter>
+    </ClCompile>
+    <ClCompile Include="Config\Presets\PresetManager.ixx">
+      <Filter>Config\Presets</Filter>
+    </ClCompile>
+    <ClCompile Include="Config\Presets\PresetManager.cpp">
+      <Filter>Config\Presets</Filter>
+    </ClCompile>
+    <ClCompile Include="Config\Presets\PresetBinding.ixx">
+      <Filter>Config\Presets</Filter>
+    </ClCompile>
+    <ClCompile Include="Config\Presets\PresetBinding.cpp">
+      <Filter>Config\Presets</Filter>
+    </ClCompile>
+    <ClCompile Include="Config\Presets\PresetSession.ixx">
+      <Filter>Config\Presets</Filter>
+    </ClCompile>
+    <ClCompile Include="Config\Presets\PresetSession.cpp">
+      <Filter>Config\Presets</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

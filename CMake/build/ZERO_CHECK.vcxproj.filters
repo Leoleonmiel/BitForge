@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="18.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="C:\School\lhammel\Fork\BitForge\CMake\build\CMakeFiles\da1d0d206f7523f9c56df66e8669a491\generate.stamp.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{B8B48BEF-3583-3948-8834-757C68649FA0}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
