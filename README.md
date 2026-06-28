@@ -10,10 +10,10 @@ BitForge is a real-time **Direct3D 12** rendering engine that grew from raw **MA
 
 ## Table of contents
 
-1. [Introduction - What's BitForge?](#1-introduction--whats-bitforge)
-2. [Architecture - General pipeline flow](#2-architecture--general-pipeline-flow)
-3. [Rendering - The rendering pipeline](#3-rendering--the-rendering-pipeline)
-4. [Optimization - Make code great again](#4-optimization--make-code-great-again)
+1. [What's BitForge?](#1-introduction--whats-bitforge)
+2. [General pipeline flow](#2-architecture--general-pipeline-flow)
+3. [Rendering pipeline](#3-rendering--the-rendering-pipeline)
+4. [Optimization](#4-optimization--make-code-great-again)
 5. [Demo overview](#5-live-demo)
 6. [Project structure](#6-project-structure)
 7. [Building & controls](#7-building--controls)
@@ -21,7 +21,7 @@ BitForge is a real-time **Direct3D 12** rendering engine that grew from raw **MA
 
 ---
 
-## 1. Introduction - What's BitForge?
+## 1.What's BitForge?
 
 BitForge is a graduation capstone exploring how far a renderer can be pushed when built **from the metal up** - starting in assembly and layering modern graphics techniques on top. It is a deliberately **multi-language** project: low-level windowing in **MASM x86**, engine and application logic in **C++20 (with modules)**, and shading in **HLSL**.
 
@@ -47,7 +47,7 @@ Resources referenced span various graphics authors from **2014-2025** (plus a he
 
 ---
 
-## 2. Architecture - General pipeline flow
+## 2.General pipeline flow
 
 ### Overview & code flow
 
@@ -75,7 +75,7 @@ main.cpp          (C++20)  composition root: create window, init renderer, run f
 
 ---
 
-## 3. Rendering - The rendering pipeline
+## 3. Rendering pipeline
 
 BitForge is a **deferred** engine: geometry is rasterized **once** into a set of textures (the G-buffer), then every later stage is a full-screen pass that reads those textures. Each frame the **render graph** executes an ordered list of passes:
 
@@ -148,7 +148,7 @@ Everything after lighting works in **linear HDR float**; the final pass compress
 
 ---
 
-## 4. Optimization - Make code great again!
+## 4. Optimization
 
 ### SIMD implementation
 
