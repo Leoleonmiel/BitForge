@@ -14,11 +14,10 @@ BitForge is a real-time **Direct3D 12** rendering engine that grew from raw **MA
 2. [Architecture - General pipeline flow](#2-architecture--general-pipeline-flow)
 3. [Rendering - The rendering pipeline](#3-rendering--the-rendering-pipeline)
 4. [Optimization - Make code great again](#4-optimization--make-code-great-again)
-5. [Live demo](#5-live-demo)
+5. [Demo overview](#5-live-demo)
 6. [Project structure](#6-project-structure)
 7. [Building & controls](#7-building--controls)
 8. [Roadmap - What's next?](#8-roadmap--whats-next)
-9. [Conclusion](#9-conclusion)
 
 ---
 
@@ -173,9 +172,7 @@ Other optimization angles: a multithreaded **async asset pipeline** (worker thre
 
 ---
 
-## 5. Live demo
-
-> See the [project presentation](https://docs.google.com/presentation/d/1SG5pgmxKgExa6IxlRyvqw_RflE-PIy-k95eL4XF4HJk/edit?usp=sharing) for the full walkthrough and demo.
+## 5.Demo overview
 
 The default scene is **Sponza** with PBR materials, dynamic sun + point lights, and the full effect chain enabled. At runtime you can:
 
@@ -264,15 +261,6 @@ msbuild BitForge\BitForge.vcxproj /t:Rebuild /p:Configuration=Release /p:Platfor
 - Viewport + hierarchy tools
 - Profiler assistance
 - Gizmo systems
-
----
-
-## 9. Conclusion
-
-BitForge is a compact but feature-complete deferred renderer that bridges **hand-written assembly** and **modern Direct3D 12** - a capstone in building graphics technology end to end, from the window procedure to physically-based shading.
-
-*Thank you for reading! Questions and feedback welcome.* :)
-
 ---
 
 <sub>Capstone Graduation Project - Leonnel Hammel.</sub>
