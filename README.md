@@ -2,9 +2,6 @@
 
 EDIT : New repository for the BitForge project, because the original was deleted by a miss manipulation of the GitHub interface, this is the new repository for the project, all the files are here
 
-### Rendering Engine
-**by Leonnel Hammel**
-
 📊 [**Project presentation (Google Slides)**](https://docs.google.com/presentation/d/1SG5pgmxKgExa6IxlRyvqw_RflE-PIy-k95eL4XF4HJk/edit?usp=sharing)
 
 BitForge is a real-time **Direct3D 12** rendering engine that grew from raw **MASM x86 assembly** into a full **deferred, GPU-driven** renderer. It loads glTF scenes (Sponza by default) and renders them with a complete physically-based lighting and post-process pipeline - shadows, SSAO, screen-space reflections, volumetric fog, and temporal anti-aliasing - wrapped in a multi-language architecture spanning Assembler, C++20 modules, and HLSL.
