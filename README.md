@@ -1,6 +1,8 @@
 # BitForge
 
-### Rendering Engine - Capstone Graduation Project
+EDIT : New repository for the BitForge project, because the original was deleted by a miss manipulation of the GitHub interface, this is the new repository for the project, all the files are here
+
+### Rendering Engine
 **by Leonnel Hammel**
 
 📊 [**Project presentation (Google Slides)**](https://docs.google.com/presentation/d/1SG5pgmxKgExa6IxlRyvqw_RflE-PIy-k95eL4XF4HJk/edit?usp=sharing)
