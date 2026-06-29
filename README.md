@@ -2,13 +2,9 @@
 
 EDIT : New repository for the BitForge project, because the original was deleted by a miss manipulation of the GitHub interface, this is the new repository for the project, all the files are here
 
-### Rendering Engine
-**by Leonnel Hammel**
-
 📊 [**Project presentation (Google Slides)**](https://docs.google.com/presentation/d/1SG5pgmxKgExa6IxlRyvqw_RflE-PIy-k95eL4XF4HJk/edit?usp=sharing)
 
 BitForge is a real-time **Direct3D 12** rendering engine that grew from raw **MASM x86 assembly** into a full **deferred, GPU-driven** renderer. It loads glTF scenes (Sponza by default) and renders them with a complete physically-based lighting and post-process pipeline - shadows, SSAO, screen-space reflections, volumetric fog, and temporal anti-aliasing - wrapped in a multi-language architecture spanning Assembler, C++20 modules, and HLSL.
-
 ---
 
 ## Table of contents
@@ -17,11 +13,11 @@ BitForge is a real-time **Direct3D 12** rendering engine that grew from raw **MA
 2. [Architecture - General pipeline flow](#2-architecture--general-pipeline-flow)
 3. [Rendering - The rendering pipeline](#3-rendering--the-rendering-pipeline)
 4. [Optimization - Make code great again](#4-optimization--make-code-great-again)
-5. [Live demo](#5-live-demo)
-6. [Project structure](#6-project-structure)
-7. [Building & controls](#7-building--controls)
-8. [Roadmap - What's next?](#8-roadmap--whats-next)
-9. [Conclusion](#9-conclusion)
+5. [Problems faced & solutions](#5-problems-faced--solutions)
+6. [Live demo](#6-live-demo)
+7. [Project structure](#7-project-structure)
+8. [Building & controls](#8-building--controls)
+9. [Roadmap - What's next?](#9-roadmap--whats-next)
 
 ---
 
@@ -176,7 +172,90 @@ Other optimization angles: a multithreaded **async asset pipeline** (worker thre
 
 ---
 
-## 5. Live demo
+## 5. Problems faced & solutions
+
+The interesting part of a renderer is rarely the happy path. These are real problems I hit building BitForge, why they were hard, and what I did about them.
+
+### Deferred rendering has no usable MSAA
+
+**Problem.** Hardware multisampling does not work on a deferred G-buffer the usual way (you can't meaningfully average position/normal/material samples), so the image aliased badly on edges.
+
+**Solution.** I implemented **Temporal Anti-Aliasing**: Halton sub-pixel jitter on the projection each frame, motion-vector reprojection of the previous frame from a ping-pong history buffer, and neighborhood color clamping to reject ghosting. This trades a per-frame jitter for a stable, anti-aliased image without MSAA, and doubles as the stabilizer for the noisy SSAO/SSR passes.
+
+### CPU draw calls were the bottleneck, not the GPU
+
+**Problem.** The naive path issued one draw call (and buffer rebind) per mesh. With Sponza that is hundreds of CPU-side calls per frame, and the CPU, not the GPU, capped the frame rate.
+
+**Solution.** I rebuilt the geometry path to be **GPU-driven**: every mesh is merged into one unified vertex and index buffer at load time, per-object data goes into an instance buffer, and per-draw parameters into an indirect command buffer. The whole scene then renders from a **single `ExecuteIndirect`**. CPU draw submission went from "per object" to "once."
+
+```
+Before:  for each mesh -> bind buffers -> draw      (hundreds of CPU calls)
+After:   bind unified buffers once -> ExecuteIndirect  (1 CPU call)
+```
+
+### Wireframe and backface-cull silently did nothing in GPU-driven mode
+
+**Problem.** After moving to indirect rendering, the UI's Wireframe and Backface-Cull toggles stopped working. The cause: the indirect path bound a single hard-coded PSO (solid fill, cull none), while only the old CPU path had state variants.
+
+**Solution.** I generated **2x2 PSO variants `[fill][cull]`** for the indirect pipeline (built in a nested loop) and selected `m_indirectGbufferPsoVariant[wireframe][backfaceCull]` at draw time, so both toggles behave identically in either rendering mode.
+
+### C++20 modules + the STL: a double-definition wall
+
+**Problem.** Building the preset system as C++20 modules, the implementation units would not compile: dozens of `C2572 "redefinition of default argument"` errors deep inside `<type_traits>`. The trigger was a module implementation unit textually including the STL (via `json.hpp`) while its module interface also made `std::string` reachable, so the standard library was defined twice in one translation unit.
+
+**Solution.** I made every preset module **interface std-free** (they exchange `const char*` and a plain `ScenePreset` struct, not `std::string`/`std::vector`), and confined all STL and JSON usage to the `.cpp` implementations. This mirrors how the project's `bf.Window` module already worked and removed the collision entirely.
+
+### The shader edit that "did nothing"
+
+**Problem.** I added a shadow-map debug view, edited the shader, rebuilt, and saw no change. I spent real time convinced the shader logic was wrong.
+
+**Solution.** The actual cause was the asset layout: the executable compiles shaders at runtime from its **own directory** (`x64/<Config>/assets/shaders`), but I was editing a second copy in `WorkDirectory`. There were three un-synced copies. I added a **post-build copy step** so `WorkDirectory/Assets` is the single source of truth and is mirrored next to the executable on every build (incremental, skips unchanged files). The "edited the wrong copy" class of bug is now impossible.
+
+### Release build linked but crashed / failed on `WinMain`
+
+**Problem.** The app uses `int main()`, but the Release configuration (Windows subsystem) expected `WinMain`, producing an unresolved-symbol link error, and LTCG made incremental builds unreliable.
+
+**Solution.** I forced the CRT entry point to `mainCRTStartup` (`<EntryPointSymbol>` in the Release config) so the Windows subsystem calls `main()` with no console window, and adopted **Rebuild** over incremental for the LTCG + C++20-module configuration.
+
+### Why only 128 lights (a deliberate trade, not a bug)
+
+**Problem / decision.** The lighting pass loops over every light for every pixel with no culling, so cost grows linearly with light count. I needed a sane budget.
+
+**Solution.** I capped the light buffer at **128** as an honest budget for an un-culled single-pass deferred renderer, and documented that scaling to thousands would require tiled or clustered lighting. This is recorded as a known limitation rather than hidden, and it is a clean future-work item on the roadmap.
+
+### Assembler: the Win64 calling convention and shadow space
+
+**Problem.** The window is created from hand-written MASM x86-64. Every Win32 call (`RegisterClassExW`, `CreateWindowExW`, `GetModuleHandleW`, ...) must follow the Windows x64 ABI: the first four arguments go in `rcx, rdx, r8, r9`, the caller must reserve **32 bytes of shadow space**, and the stack must be 16-byte aligned at the call. Getting any of this wrong does not warn at assemble time, it just crashes at runtime.
+
+**Solution.** I gave every procedure a disciplined prologue (`sub rsp, 40h` / `sub rsp, 20h`) that both reserves shadow space and keeps alignment, and I spill incoming register arguments into that shadow space (`mov [rsp+20h], rcx`, etc.) before making nested calls that would clobber the volatile registers. The window class, creation, message pump, and cleanup are all built on this convention.
+
+### Assembler: no `windows.h`, so types and strings are built by hand
+
+**Problem.** MASM has no Windows headers. There is no `WNDCLASSEXW`, no `MSG`, no `IDC_ARROW`, and no easy wide-string literal, yet the Unicode `*W` APIs require all of them with exact memory layout.
+
+**Solution.** I maintain a custom `windows.inc` with the struct definitions and constants, zero `WNDCLASSEXW` with `rep stosb` and fill it field by field, and build UTF-16 strings manually as word arrays (`className DW 'M','y',' ','C','l','a','s','s', 0`) so they are valid wide strings for `RegisterClassExW` / `CreateWindowExW`.
+
+### Assembler: a render loop cannot block on the message queue
+
+**Problem.** The classic `GetMessageW` loop **blocks** until a message arrives. That is fine for a passive app, but a renderer must run every frame regardless of input, so a blocking pump would freeze rendering.
+
+**Solution.** I split the window into small public procedures (`ProcessMessages`, `IsWindowOpen`, `DrawWindow`) built on **`PeekMessageW`** instead of `GetMessageW`, so the C++ frame loop can pump messages non-blocking, check whether the window is still open, and render, all in the same tick.
+
+### Assembler: accepting arguments by value or by pointer from C++
+
+**Problem.** Depending on how the C++ side calls in, window parameters (width, height, x, y) could arrive as raw values or as pointers, and the assembly entry point needs to handle both without duplicating the whole routine.
+
+**Solution.** I exposed two thin entry points that share one implementation: `InitWindowValue` jumps straight to the core routine, while `InitWindowRef` first dereferences `rcx/rdx/r8/r9` (`mov rcx, [rcx]` ...) and then falls through to the same code. One implementation, two ABIs.
+
+### Assembler: linking MASM with C++20 modules and handing off the HWND
+
+**Problem.** The engine began entirely in assembly, but D3D12 lives in C++. The two halves have to share data and functions across the MASM/C++ boundary, and the renderer ultimately needs the window handle.
+
+**Solution.** I defined an explicit symbol contract with `PUBLIC`/`EXTERN` for both data (`g_bgcolor`, `className`, `windowClass`) and functions (`RegisterWindowClass`, `CreateWin`, `WinProc`), wired the `.asm` files into the build via the MASM target, and exposed `InitWindowHandle` / `GetWindowHandle` so the **`bf.Window`** C++20 module can wrap the assembly window and pass a clean `HWND` to `Dx12Renderer::Initialize`.
+
+---
+
+## 6. Live demo
 
 > See the [project presentation](https://docs.google.com/presentation/d/1SG5pgmxKgExa6IxlRyvqw_RflE-PIy-k95eL4XF4HJk/edit?usp=sharing) for the full walkthrough and demo.
 
@@ -190,7 +269,7 @@ The default scene is **Sponza** with PBR materials, dynamic sun + point lights, 
 
 ---
 
-## 6. Project structure
+## 7. Project structure
 
 ```
 BitForge/                  (solution root)
@@ -217,7 +296,7 @@ BitForge/                  (solution root)
 
 ---
 
-## 7. Building & controls
+## 8. Building & controls
 
 **Requirements:** Windows 10/11 with a D3D12 GPU · Visual Studio 2022/2025 (v143+ toolset) with the **Desktop C++** workload + **MASM** · Windows 10 SDK.
 
@@ -247,7 +326,7 @@ msbuild BitForge\BitForge.vcxproj /t:Rebuild /p:Configuration=Release /p:Platfor
 
 ---
 
-## 8. Roadmap - What's next?
+## 9. Roadmap - What's next?
 
 **Engine & architecture**
 - Cleaner DirectX implementation and architecture refactoring
@@ -267,15 +346,3 @@ msbuild BitForge\BitForge.vcxproj /t:Rebuild /p:Configuration=Release /p:Platfor
 - Viewport + hierarchy tools
 - Profiler assistance
 - Gizmo systems
-
----
-
-## 9. Conclusion
-
-BitForge is a compact but feature-complete deferred renderer that bridges **hand-written assembly** and **modern Direct3D 12** - a capstone in building graphics technology end to end, from the window procedure to physically-based shading.
-
-*Thank you for reading! Questions and feedback welcome.* :)
-
----
-
-<sub>Capstone Graduation Project - Leonnel Hammel.</sub>
