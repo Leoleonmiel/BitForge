@@ -14,14 +14,14 @@ BitForge is a real-time **Direct3D 12** rendering engine that grew from raw **MA
 3. [Rendering - The rendering pipeline](#3-rendering--the-rendering-pipeline)
 4. [Optimization - Make code great again](#4-optimization--make-code-great-again)
 5. [Problems faced & solutions](#5-problems-faced--solutions)
-6. [Live demo](#6-live-demo)
+6. [Demo](#6-Demo)
 7. [Project structure](#7-project-structure)
 8. [Building & controls](#8-building--controls)
 9. [Roadmap - What's next?](#9-roadmap--whats-next)
 
 ---
 
-## 1. Introduction - What's BitForge?
+## 1.What's BitForge?
 
 BitForge is a graduation capstone exploring how far a renderer can be pushed when built **from the metal up** - starting in assembly and layering modern graphics techniques on top. It is a deliberately **multi-language** project: low-level windowing in **MASM x86**, engine and application logic in **C++20 (with modules)**, and shading in **HLSL**.
 
@@ -29,7 +29,7 @@ BitForge is a graduation capstone exploring how far a renderer can be pushed whe
 
 | Period | Milestone |
 |---|---|
-| **November** | Kickoff - start in MASM x86 assembly |
+| **October** | Kickoff - start in MASM x86 assembly |
 | **December** | Milestone 1 |
 | **January** | DirectX 12 integration - Milestone 2 |
 | **February** | Rendering pipeline implementation |
@@ -47,7 +47,7 @@ Resources referenced span various graphics authors from **2014-2025** (plus a he
 
 ---
 
-## 2. Architecture - General pipeline flow
+## 2.General pipeline flow
 
 ### Overview & code flow
 
@@ -75,7 +75,7 @@ main.cpp          (C++20)  composition root: create window, init renderer, run f
 
 ---
 
-## 3. Rendering - The rendering pipeline
+## 3. Rendering pipeline
 
 BitForge is a **deferred** engine: geometry is rasterized **once** into a set of textures (the G-buffer), then every later stage is a full-screen pass that reads those textures. Each frame the **render graph** executes an ordered list of passes:
 
@@ -148,7 +148,7 @@ Everything after lighting works in **linear HDR float**; the final pass compress
 
 ---
 
-## 4. Optimization - Make code great again!
+## 4. Optimization
 
 ### SIMD implementation
 
@@ -255,7 +255,7 @@ After:   bind unified buffers once -> ExecuteIndirect  (1 CPU call)
 
 ---
 
-## 6. Live demo
+## 6. Demo
 
 > See the [project presentation](https://docs.google.com/presentation/d/1SG5pgmxKgExa6IxlRyvqw_RflE-PIy-k95eL4XF4HJk/edit?usp=sharing) for the full walkthrough and demo.
 
