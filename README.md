@@ -29,7 +29,7 @@ BitForge is a graduation capstone exploring how far a renderer can be pushed whe
 
 | Period | Milestone |
 |---|---|
-| **November** | Kickoff - start in MASM x86 assembly |
+| **October** | Kickoff - start in MASM x86 assembly |
 | **December** | Milestone 1 |
 | **January** | DirectX 12 integration - Milestone 2 |
 | **February** | Rendering pipeline implementation |
