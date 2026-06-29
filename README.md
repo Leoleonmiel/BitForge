@@ -1,6 +1,6 @@
 # BitForge
 
-EDIT : New repository for the BitForge project, because the original was deleted by a miss manipulation of the GitHub interface, this is the new repository for the project, all the files are here
+EDIT : New repository for the BitForge project, because the original was deleted by a miss manipulation of Git, this is the new repository for the project :(
 
 📊 [**Project presentation (Google Slides)**](https://docs.google.com/presentation/d/1SG5pgmxKgExa6IxlRyvqw_RflE-PIy-k95eL4XF4HJk/edit?usp=sharing)
 
