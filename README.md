@@ -26,28 +26,28 @@ Shadow -> GBuffer -> SSAO -> SSAOBlur -> Lighting -> SSR -> DoF -> Fog -> TAA ->
 ```
 Passes are `std::function` callbacks sharing a `RenderContext`, so they can be reordered, toggled or added independently
 
-- **Shadows** — one 2048² directional map (`D32`), 3×3 PCF with depth bias; ortho matrix derived from scene bounds
+- **Shadows** : one 2048² directional map (`D32`), 3×3 PCF with depth bias; ortho matrix derived from scene bounds
   
-- **G-buffer** — four `R16G16B16A16_FLOAT` targets + `D32` depth: world position (`.w` = geometry flag), world normal, albedo, material (metallic/roughness/AO)
+- **G-buffer** : four `R16G16B16A16_FLOAT` targets + `D32` depth: world position (`.w` = geometry flag), world normal, albedo, material (metallic/roughness/AO)
   
-- **SSAO** — 64-point hemisphere kernel rotated by 4×4 noise, then a depth-aware blur. Darkens only the ambient term
+- **SSAO** : 64-point hemisphere kernel rotated by 4×4 noise, then a depth-aware blur. Darkens only the ambient term
   
-- **Lighting** — Cook-Torrance PBR (GGX + Smith + Schlick), up to 128 lights from a structured buffer. **IBL is analytic, no cubemap**: procedural sky for reflections, hemisphere irradiance for diffuse, approximated BRDF — zero texture cost
+- **Lighting** : Cook-Torrance PBR (GGX + Smith + Schlick), up to 128 lights from a structured buffer. **IBL is analytic, no cubemap**: procedural sky for reflections, hemisphere irradiance for diffuse, approximated BRDF — zero texture cost
   
-- **SSR** — forward ray-march, projecting each step to screen space and testing G-buffer depth; hits pull back already-lit color weighted by Fresnel and smoothness. Only on-screen geometry reflects
+- **SSR** : forward ray-march, projecting each step to screen space and testing G-buffer depth; hits pull back already-lit color weighted by Fresnel and smoothness. Only on-screen geometry reflects
   
-- **Volumetric fog** — ray-marched media with Henyey-Greenstein scattering and shadow-map sampling for god-rays
+- **Volumetric fog** : ray-marched media with Henyey-Greenstein scattering and shadow-map sampling for god-rays
   
-- **TAA** — Halton jitter, motion-vector reprojection from a ping-pong history, neighborhood clamping against ghosting
+- **TAA** : Halton jitter, motion-vector reprojection from a ping-pong history, neighborhood clamping against ghosting
   
-- **Tone map** — None / Reinhard / ACES / AgX + camera exposure
+- **Tone map** : None / Reinhard / ACES / AgX + camera exposure
   
 ---
 ## Optimization
 
-**SIMD** — hot math via DirectXMath built for AVX2 + FMA (`/arch:AVX2`); batched vector/matrix ops and AABB accumulation in `Core/MathSimd.h`
+**SIMD** : hot math via DirectXMath built for AVX2 + FMA (`/arch:AVX2`); batched vector/matrix ops and AABB accumulation in `Core/MathSimd.h`
 
-**GPU-driven geometry** — at load time all meshes merge into one unified vertex + index buffer, per-object data into an instance buffer, per-draw params into an indirect command buffer. The whole scene renders from a **single `ExecuteIndirect`**
+**GPU-driven geometry** : at load time all meshes merge into one unified vertex + index buffer, per-object data into an instance buffer, per-draw params into an indirect command buffer. The whole scene renders from a **single `ExecuteIndirect`**
 ```
 Before:  for each mesh -> bind buffers -> draw   (hundreds of CPU calls)
 After:   bind once -> ExecuteIndirect            (1 CPU call)
