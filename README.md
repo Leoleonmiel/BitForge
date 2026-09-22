@@ -36,7 +36,7 @@ Passes are `std::function` callbacks sharing a `RenderContext`, so they can be r
 
 **SIMD** : hot math via DirectXMath built for AVX2 + FMA (`/arch:AVX2`); batched vector/matrix ops and AABB accumulation in `Core/MathSimd.h`
 
-**GPU-driven geometry** : at load time all meshes merge into one unified vertex + index buffer, per-object data into an instance buffer, per-draw params into an indirect command buffer. The whole scene renders from a **single `ExecuteIndirect`**
+**GPU-driven geometry** : at load time all meshes merge into one unified vertex + index buffer, per-object data into an instance buffer, per-draw params into an indirect command buffer
 ---
 ## Controls
 
