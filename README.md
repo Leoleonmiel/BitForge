@@ -9,8 +9,6 @@ A graduation capstone renderer built **from the metal up**: Win32 windowing in h
 ---
 ## Rendering pipeline
 
-Geometry is rasterized **once** into a G-buffer; every later stage is a full-screen pass reading those textures. Everything stays in **linear HDR** until the final tone-map.
-
 ![BitForge render pipeline](docs/pipeline.png)
 
 - **Shadows** : one 2048² directional map (`D32`), 3×3 PCF with depth bias; ortho matrix derived from scene bounds
@@ -19,7 +17,7 @@ Geometry is rasterized **once** into a G-buffer; every later stage is a full-scr
   
 - **SSAO** : 64-point hemisphere kernel rotated by 4×4 noise, then a depth-aware blur. Darkens only the ambient term
   
-- **Lighting** : Cook-Torrance PBR (GGX + Smith + Schlick), up to 128 lights from a structured buffer. **IBL is analytic, no cubemap**: procedural sky for reflections, hemisphere irradiance for diffuse, approximated BRDF — zero texture cost
+- **Lighting** : Cook-Torrance PBR, up to 128 lights from a structured buffer. **IBL analytic**: procedural sky for reflections, hemisphere irradiance for diffuse, approximated BRDF
   
 - **SSR** : forward ray-march, projecting each step to screen space and testing G-buffer depth; hits pull back already-lit color weighted by Fresnel and smoothness. Only on-screen geometry reflects
   
