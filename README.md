@@ -13,8 +13,6 @@ Geometry is rasterized **once** into a G-buffer; every later stage is a full-scr
 
 ![BitForge render pipeline](docs/pipeline.png)
 
-Passes are `std::function` callbacks sharing a `RenderContext`, so they can be reordered, toggled or added independently
-
 - **Shadows** : one 2048² directional map (`D32`), 3×3 PCF with depth bias; ortho matrix derived from scene bounds
   
 - **G-buffer** : four `R16G16B16A16_FLOAT` targets + `D32` depth: world position (`.w` = geometry flag), world normal, albedo, material (metallic/roughness/AO)
@@ -35,7 +33,6 @@ Passes are `std::function` callbacks sharing a `RenderContext`, so they can be r
 ## Optimization
 
 **SIMD** : hot math via DirectXMath built for AVX2 + FMA (`/arch:AVX2`); batched vector/matrix ops and AABB accumulation in `Core/MathSimd.h`
-
 **GPU-driven geometry** : at load time all meshes merge into one unified vertex + index buffer, per-object data into an instance buffer, per-draw params into an indirect command buffer
 ---
 ## Controls
